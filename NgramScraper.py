@@ -50,4 +50,4 @@ class NgramScraper(object):
 
     def query_most_recent_freq(self, ngram):
         data = self.query(ngram)
-        return data['timeseries'][-1]
+        return data['timeseries'][-1] if data else None
