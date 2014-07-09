@@ -42,8 +42,11 @@ class NgramScraper(object):
         match = self._regexp.search(html)
         if match is None:
             return None
-        data = json.loads(match.group(1))[0]
-        return data
+        data = json.loads(match.group(1))
+        if len(data) < 1:
+            return None
+        else:
+            return data[0]
 
     def query_most_recent_freq(self, ngram):
         data = self.query(ngram)
