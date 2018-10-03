@@ -1,4 +1,9 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+
 import httplib, urllib, re, json
+
 
 class NgramScraper(object):
     """
@@ -51,3 +56,10 @@ class NgramScraper(object):
     def query_most_recent_freq(self, ngram):
         data = self.query(ngram)
         return data['timeseries'][-1] if data else None
+
+if __name__ == '__main__':
+    import json
+    import sys
+    s = NgramScraper()
+    result = s.query(ngram=' '.join(sys.argv[1:]))
+    print(json.dumps(result))
